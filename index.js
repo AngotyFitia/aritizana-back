@@ -1,13 +1,11 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const serverless = require('serverless-http'); // nécessaire pour Vercel
 
-// Route de test
+// Routes
 app.get('/', (req, res) => {
-  res.send('Bonjour depuis Express!');
+  res.send('Hello depuis Express sur Vercel !');
 });
 
-// Démarrer le serveur
-app.listen(PORT, () => {
-  console.log(`Serveur lancé sur http://localhost:${PORT}`);
-});
+// Exporter l'app pour Vercel
+module.exports.handler = serverless(app);
